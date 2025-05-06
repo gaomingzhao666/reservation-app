@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <h1>Home page</h1>
-  </div>
+  </main>
 </template>
 
 <script lang="ts" setup></script>
