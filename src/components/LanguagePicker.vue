@@ -1,7 +1,9 @@
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger>
-      <Languages />
+      <Button>
+        <Languages class="size-5" />
+      </Button>
     </DropdownMenuTrigger>
 
     <DropdownMenuContent>
@@ -20,6 +22,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { Button } from '@/components/ui/button'
 import { Languages } from 'lucide-vue-next'
 </script>
 

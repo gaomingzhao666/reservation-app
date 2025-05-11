@@ -4,16 +4,10 @@
     <router-link to="/signup">Sign Up</router-link>
     <router-link to="/login">Login</router-link>
 
-    <ThemeToggle />
-    <LanguagePicker />
-
     <aside>
       <!-- burger icon -->
     </aside>
   </nav>
 </template>
 
-<script setup lang="ts">
-import LanguagePicker from '@/components/LanguagePicker.vue'
-import ThemeToggle from '@/components/ThemeToggle.vue'
-</script>
+<script setup lang="ts"></script>

@@ -9,20 +9,12 @@ const mode = useColorMode({ disableTransition: false })
 
 <template>
   <button>
-    <Button
-      variant="outline"
-      @click="mode = 'dark'"
-      class="absolute scale-100 transition-all dark:scale-0 rotate-0 dark:-rotate-90"
-    >
-      <Moon class="h-[1.2rem] w-[1.2rem]" />
+    <Button variant="outline" @click="mode = 'dark'" class="dark:hidden">
+      <Moon class="size-5" />
     </Button>
 
-    <Button
-      variant="outline"
-      @click="mode = 'light'"
-      class="absolute scale-0 transition-all dark:scale-100 rotate-90 dark:rotate-0"
-    >
-      <Sun class="h-[1.2rem] w-[1.2rem]" />
+    <Button variant="outline" @click="mode = 'light'" class="hidden dark:block">
+      <Sun class="size-5" />
     </Button>
 
     <span class="sr-only">Toggle Theme</span>
