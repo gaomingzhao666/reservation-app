@@ -1,9 +1,11 @@
 <template>
   <main>
-    <h1>Home page</h1>
+    <HotelInfoCard />
   </main>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import HotelInfoCard from '@/components/HotelInfoCard.vue'
+</script>
 
 <style></style>
