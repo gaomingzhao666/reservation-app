@@ -6,11 +6,13 @@
       <Input type="text" placeholder="Search by place" class="w-full md:w-80" />
     </section>
 
-    <Navbar />
+    <section class="flex items-center justify-end">
+      <Navbar />
 
-    <section class="flex items-center justify-start space-x-4">
-      <ThemeToggle />
-      <LanguagePicker />
+      <section class="flex items-center justify-start space-x-4">
+        <ThemeToggle />
+        <LanguagePicker />
+      </section>
     </section>
   </header>
 </template>

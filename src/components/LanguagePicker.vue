@@ -1,7 +1,7 @@
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger>
-      <Button>
+      <Button variant="outline">
         <Languages class="size-5" />
       </Button>
     </DropdownMenuTrigger>
