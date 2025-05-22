@@ -15,6 +15,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.7",
     "@tailwindcss/vite": "^4.1.7",
+    "@vee-validate/zod": "^4.15.0",
     "@vueuse/core": "^13.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,8 +24,10 @@
     "reka-ui": "^2.2.1",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.7",
+    "vee-validate": "^4.15.0",
     "vue": "^3.5.14",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "zod": "^3.25.20"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.2",
@@ -43,5 +46,6 @@
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.6",
     "vue-tsc": "^2.2.10"
-  }
+  },
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6"
 }
