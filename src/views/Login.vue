@@ -30,6 +30,12 @@
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <section class="flex justify-start">
+        <RouterLink to="/signup" class="text-sm hover:underline">
+          Don't have an account? To sign up
+        </RouterLink>
+      </section>
       <Button type="submit"> Login </Button>
     </form>
   </main>
