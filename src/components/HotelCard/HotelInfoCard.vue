@@ -5,8 +5,13 @@
         <CardTitle>{{ props.data.name }}</CardTitle>
 
         <section class="flex justify-start items-center gap-x-4">
-          <Button size="lg" variant="secondary">Review</Button>
-          <Button size="lg">Book Now</Button>
+          <RouterLink to="/review">
+            <Button size="lg" variant="secondary">Review</Button>
+          </RouterLink>
+
+          <RouterLink :to="`/booking/${props.data.name}`">
+            <Button size="lg">Book Now</Button>
+          </RouterLink>
         </section>
       </section>
 
