@@ -1,11 +1,11 @@
 <template>
   <main>
-    <HotelInfoCard v-for="(item, index) in sample" :key="index" :data="item" />
+    <HotelCard v-for="(item, index) in sample" :key="index" :data="item" />
   </main>
 </template>
 
 <script lang="ts" setup>
-import HotelInfoCard from '@/components/HotelCard/HotelInfoCard.vue'
+import HotelCard from '@/components/HotelCard/HotelCard.vue'
 import { reactive } from 'vue'
 
 const sample = reactive([
