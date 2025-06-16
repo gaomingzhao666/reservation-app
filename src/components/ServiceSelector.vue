@@ -1,7 +1,5 @@
 <template>
   <section>
-    <h1>Select Service</h1>
-
     <ButtonGroup
       :data="{
         categories: ['Room', 'Room', 'Room', 'Room', 'Room', 'selectedRoom'],
@@ -12,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import ButtonGroup from '@/components/ButtonGroup.vue'
+import ButtonGroup from '@/components/ServiceSelectList.vue'
 </script>
 
 <style></style>
