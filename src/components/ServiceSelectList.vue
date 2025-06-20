@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Button from '@/components/ui/button/Button.vue'
+import { Button } from '@/components/ui/button'
 interface Props {
   data: {
     categories: string[]
