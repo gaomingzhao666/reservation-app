@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RangeCalendar } from '@/components/ui/range-calendar'
 
-import { Card } from '@/components/ui/card'
+import { Card, CardHeader, CardFooter } from '@/components/ui/card'
 import { reactive, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
 
@@ -44,10 +44,9 @@ onUnmounted(() => {
 const df = new DateFormatter('en-US', {
   dateStyle: 'medium',
 })
-
 const value = ref({
-  start: new CalendarDate(2022, 1, 20),
-  end: new CalendarDate(2022, 1, 20).add({ days: 20 }),
+  start: new CalendarDate(2025, 1, 20),
+  end: new CalendarDate(2025, 1, 20).add({ days: 20 }),
 }) as Ref<DateRange>
 </script>
 
@@ -59,7 +58,7 @@ const value = ref({
     "
     @click.stop="changeStyles.isRing = !changeStyles.isRing"
   >
-    <section>
+    <CardHeader class="flex flex-col gap-y-2">
       <section class="flex items-center justify-start gap-x-4">
         <h3
           for="terms"
@@ -75,39 +74,41 @@ const value = ref({
       <p class="text-sm text-neutral-600 dark:text-neutral-400">
         {{ props.data.serviceDuration }}
       </p>
-    </section>
+    </CardHeader>
 
     <!-- date picker -->
-    <Popover>
-      <PopoverTrigger as-child>
-        <Button
-          variant="outline"
-          :class="
-            cn('w-[280px] justify-start text-left font-normal', !value && 'text-muted-foreground')
-          "
-        >
-          <CalendarIcon class="mr-2 h-4 w-4" />
-          <template v-if="value.start">
-            <template v-if="value.end">
-              {{ df.format(value.start.toDate(getLocalTimeZone())) }} -
-              {{ df.format(value.end.toDate(getLocalTimeZone())) }}
-            </template>
+    <CardFooter>
+      <Popover>
+        <PopoverTrigger as-child>
+          <Button
+            variant="outline"
+            :class="
+              cn('w-[280px] justify-start text-left font-normal', !value && 'text-muted-foreground')
+            "
+          >
+            <CalendarIcon class="mr-2 h-4 w-4" />
+            <template v-if="value.start">
+              <template v-if="value.end">
+                {{ df.format(value.start.toDate(getLocalTimeZone())) }} -
+                {{ df.format(value.end.toDate(getLocalTimeZone())) }}
+              </template>
 
-            <template v-else>
-              {{ df.format(value.start.toDate(getLocalTimeZone())) }}
+              <template v-else>
+                {{ df.format(value.start.toDate(getLocalTimeZone())) }}
+              </template>
             </template>
-          </template>
-          <template v-else> Pick a date </template>
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent class="w-auto p-0">
-        <RangeCalendar
-          v-model="value"
-          initial-focus
-          :number-of-months="2"
-          @update:start-value="(startDate) => (value.start = startDate)"
-        />
-      </PopoverContent>
-    </Popover>
+            <template v-else> Pick a date </template>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent class="w-auto p-0">
+          <RangeCalendar
+            v-model="value"
+            initial-focus
+            :number-of-months="2"
+            @update:start-value="(startDate) => (value.start = startDate)"
+          />
+        </PopoverContent>
+      </Popover>
+    </CardFooter>
   </Card>
 </template>
