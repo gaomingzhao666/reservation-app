@@ -25,6 +25,31 @@ const fakeData = [
     serviceDuration: '2 hours',
     servicePrice: '$100.00',
   },
+  {
+    serviceTitle: 'Spa Treatment',
+    serviceDuration: '2 hours',
+    servicePrice: '$100.00',
+  },
+  {
+    serviceTitle: 'Spa Treatment',
+    serviceDuration: '2 hours',
+    servicePrice: '$100.00',
+  },
+  {
+    serviceTitle: 'Spa Treatment',
+    serviceDuration: '2 hours',
+    servicePrice: '$100.00',
+  },
+  {
+    serviceTitle: 'Spa Treatment',
+    serviceDuration: '2 hours',
+    servicePrice: '$100.00',
+  },
+  {
+    serviceTitle: 'Spa Treatment',
+    serviceDuration: '2 hours',
+    servicePrice: '$100.00',
+  },
 ]
 </script>
 
