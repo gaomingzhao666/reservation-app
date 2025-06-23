@@ -2,13 +2,13 @@
   <div>
     <h2>Select Service</h2>
 
-    <main class="flex flex-col md:flex-row justify-around items-center">
+    <main class="flex flex-col md:flex-row justify-around items-start">
       <section class="flex flex-col gap-y-4">
         <ServiceSelector />
         <ServiceItemSelectList />
       </section>
 
-      <aside class="sticky top-0 right-0 w-full max-w-sm">
+      <aside class="sticky top-5 w-full max-w-sm">
         <OrderInfoCard
           :data="{
             serviceImageUrl: 'https://picsum.photos/200',
