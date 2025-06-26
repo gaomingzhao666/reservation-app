@@ -3,10 +3,6 @@
     <RouterLink to="/admin">Management</RouterLink>
     <RouterLink to="/signup">Sign Up</RouterLink>
     <RouterLink to="/login">Login</RouterLink>
-
-    <aside>
-      <!-- burger icon -->
-    </aside>
   </nav>
 </template>
 
