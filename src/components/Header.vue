@@ -6,11 +6,11 @@
         <h1 class="text-xl font-semibold">Reservation App</h1>
       </RouterLink>
 
-      <Input type="text" placeholder="Search by place" class="w-full md:w-80" />
+      <Input type="text" placeholder="Search by place" class="w-sm hidden md:block" />
     </section>
 
     <!-- navbar & controllers -->
-    <section class="flex items-center justify-end">
+    <section class="md:flex items-center justify-end hidden">
       <Navbar />
 
       <section class="flex items-center justify-start space-x-4">
@@ -52,16 +52,7 @@
 import Navbar from '@/components/Navbar.vue'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerFooter, DrawerTrigger } from '@/components/ui/drawer'
 import LanguagePicker from '@/components/LanguagePicker.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import { Menu } from 'lucide-vue-next'
