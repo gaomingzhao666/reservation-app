@@ -1,6 +1,6 @@
 <template>
   <main>
-    <HotelCard v-for="(item, index) in sample" :key="index" :data="item" />
+    <HotelCard v-for="(item, index) in sample" :key="index" :data="item" class="my-10" />
   </main>
 </template>
 
