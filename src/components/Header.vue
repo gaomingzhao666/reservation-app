@@ -1,5 +1,5 @@
 <template>
-  <header class="p-5 flex items-center justify-between">
+  <header class="p-5 mb-10 flex items-center justify-between">
     <!-- logo -->
     <section class="flex items-center justify-start space-x-4">
       <RouterLink to="/index">
