@@ -8,7 +8,7 @@
         <ServiceItemSelectList />
       </section>
 
-      <aside class="sticky top-5 w-full max-w-sm">
+      <aside class="sticky top-24 w-full max-w-sm">
         <OrderInfoCard
           :data="{
             serviceImageUrl: 'https://picsum.photos/200',
