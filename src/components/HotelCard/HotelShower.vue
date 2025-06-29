@@ -1,6 +1,5 @@
 <template>
-  <section>
-    <h1>222</h1>
+  <section class="w-full md:w-5xl">
     <section class="flex items-center justify-center">
       <video
         :src="hotelVideo"
@@ -9,7 +8,7 @@
         @click="isControls = true"
       ></video>
 
-      <ul class="grid grid-cols-2 gap-4 border ml-4">
+      <ul class="md:grid grid-cols-2 gap-4 border ml-4 hidden">
         <li>
           <img :src="hotelImg1" class="h-52 w-64 rounded-xl" alt="" />
         </li>

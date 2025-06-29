@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="flex flex-col justify-center items-center gap-y-5">
     <HotelShower />
 
     <HotelInfoCard :data="props.data" />

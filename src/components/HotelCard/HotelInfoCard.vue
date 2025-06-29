@@ -1,5 +1,5 @@
 <template>
-  <Card class="p-5 w-5xl">
+  <Card class="p-5 w-full md:w-5xl">
     <CardHeader>
       <section class="flex items-center justify-between">
         <CardTitle>{{ props.data.name }}</CardTitle>
@@ -35,7 +35,7 @@
       </section>
     </CardHeader>
 
-    <CardContent class="flex justify-between items-center text-sm">
+    <CardContent class="flex justify-between items-center flex-wrap gap-y-2 text-sm">
       <section class="flex items-center justify-start gap-x-2">
         <MapPin />
         <p>{{ props.data.address }}</p>
