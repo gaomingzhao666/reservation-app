@@ -7,7 +7,7 @@ import App from './App.vue'
 import router from './router'
 
 import { createI18n } from 'petite-vue-i18n'
-import enUS from './i18n/ui/enUS.json'
+import en from './i18n/ui/en.json'
 import ja from './i18n/ui/ja.json'
 
 const i18n = createI18n({
@@ -15,8 +15,8 @@ const i18n = createI18n({
   legacy: false,
   fallbackLocale: 'en',
   messages: {
-    English: enUS,
-    日本語: ja,
+    en: en,
+    ja: ja,
   },
 })
 
