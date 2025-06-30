@@ -22,6 +22,7 @@
     "embla-carousel-vue": "^8.6.0",
     "firebase": "^11.9.1",
     "lucide-vue-next": "^0.508.0",
+    "petite-vue-i18n": "12.0.0-alpha.2",
     "pinia": "^3.0.3",
     "reka-ui": "^2.3.1",
     "tailwind-merge": "^3.3.0",
