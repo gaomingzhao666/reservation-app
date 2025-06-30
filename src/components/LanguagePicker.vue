@@ -6,11 +6,13 @@
       </Button>
     </DropdownMenuTrigger>
 
-    <DropdownMenuContent>
-      <DropdownMenuItem>English</DropdownMenuItem>
-      <DropdownMenuItem>日本語</DropdownMenuItem>
-      <DropdownMenuItem>简体中文</DropdownMenuItem>
-      <DropdownMenuItem>繁體中文</DropdownMenuItem>
+    <DropdownMenuContent class="mr-5">
+      <DropdownMenuItem
+        v-for="locale in availableLocales"
+        :key="`locale-${locale}`"
+        @click="$i18n.locale = locale"
+        >{{ locale }}</DropdownMenuItem
+      >
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
@@ -24,6 +26,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Languages } from 'lucide-vue-next'
-</script>
 
-<style></style>
+import { useI18n } from 'petite-vue-i18n'
+
+const { availableLocales } = useI18n()
+</script>
