@@ -6,9 +6,20 @@
       </Button>
     </DropdownMenuTrigger>
 
-    <DropdownMenuContent class="mr-5 space-y-1 p-2">
-      <DropdownMenuItem @click="$i18n.locale = 'en'"> English </DropdownMenuItem>
-      <DropdownMenuItem @click="$i18n.locale = 'ja'"> 日本語 </DropdownMenuItem>
+    <DropdownMenuContent class="mr-5 space-y-1 p-2 rounded-xl">
+      <DropdownMenuLabel class="text-sm bg-gray-100 dark:bg-gray-800 rounded-md"
+        >Only support UI translation</DropdownMenuLabel
+      >
+      <DropdownMenuSeparator />
+
+      <DropdownMenuRadioGroup v-model="currentLocale">
+        <DropdownMenuRadioItem value="en" @click="$i18n.locale = currentLocale">
+          English
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="ja" @click="$i18n.locale = currentLocale">
+          日本語
+        </DropdownMenuRadioItem>
+      </DropdownMenuRadioGroup>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
@@ -16,10 +27,19 @@
 <script lang="ts" setup>
 import {
   DropdownMenu,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuSeparator,
   DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Languages } from 'lucide-vue-next'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
+import { useI18n } from 'petite-vue-i18n'
+
+const i18n = useI18n()
+const currentLocale: Ref<string> = ref(i18n.locale.value)
 </script>
