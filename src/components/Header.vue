@@ -6,7 +6,7 @@
         <h1 class="text-xl font-semibold">Reservation App</h1>
       </RouterLink>
 
-      <Input type="text" placeholder="Search by place" class="w-sm hidden md:block" />
+      <Input type="text" :placeholder="t('searchByPlace')" class="w-sm hidden md:block" />
     </section>
 
     <!-- navbar & controllers -->
@@ -56,6 +56,9 @@ import { Drawer, DrawerContent, DrawerFooter, DrawerTrigger } from '@/components
 import LanguagePicker from '@/components/LanguagePicker.vue'
 import ThemeToggle from '@/components/ThemeToggle.vue'
 import { Menu } from 'lucide-vue-next'
+
+import { useI18n } from 'petite-vue-i18n'
+const { t } = useI18n()
 </script>
 
 <style></style>

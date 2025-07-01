@@ -1,3 +1,10 @@
 {
-  "searchByPlace": "Search by place"
+  "searchByPlace": "Search by place",
+  "management": "Management",
+  "signup": "Sign up",
+  "login": "Login",
+  "onlySupportUITranslation": "Only support UI translation",
+
+  "review": "Review",
+  "bookNow": "Book now"
 }
