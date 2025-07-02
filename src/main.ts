@@ -10,6 +10,8 @@ import { createI18n } from 'petite-vue-i18n'
 import en from './i18n/ui/en.json'
 import ja from './i18n/ui/ja.json'
 
+import './lib/firebase'
+
 const i18n = createI18n({
   // enable composition api
   legacy: false,
