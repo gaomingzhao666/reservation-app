@@ -36,7 +36,7 @@
           Don't have an account? To sign up
         </RouterLink>
       </section>
-      <Button type="submit"> Login </Button>
+      <Button type="submit" @click="loginWithGoogle()"> Login </Button>
     </form>
   </main>
 </template>
@@ -58,41 +58,33 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { toast } from 'vue-sonner'
-import { supabase } from '@/lib/supabaseClient'
+import { storeToken } from '@/lib/token'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 const router = useRouter()
 
-const formSchema = toTypedSchema(
-  z.object({
-    email: z.string().email(),
-    password: z.string().min(8).max(20),
-  }),
-)
+const provider = new GoogleAuthProvider()
+const auth = getAuth()
+// apply the default browser preference
+auth.useDeviceLanguage()
 
-const { handleSubmit } = useForm({
-  validationSchema: formSchema,
-})
+const loginWithGoogle = () => {
+  signInWithPopup(auth, provider).then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result)
+    const token = credential?.accessToken
+    // The signed-in user info.
+    const user = result.user
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    toast.success('Login successful with Google')
 
-interface UserInfo {
-  email: string
-  password: string
-}
-const loginWithEmail = async (userInfo: UserInfo) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: userInfo.email,
-    password: userInfo.password,
-  })
+    if (token) storeToken(token)
+    else toast.error('Failed to retrieve Google Access Token')
 
-  if (error) toast.error(error.message)
-  else {
-    toast.success('Welcome, ' + data.user.email + data.session.access_token)
     router.push('/index')
-  }
+  })
 }
-
-const onSubmit = handleSubmit((values) => {
-  loginWithEmail(values)
-})
 </script>
 
 <style></style>

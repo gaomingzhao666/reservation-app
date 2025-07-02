@@ -52,7 +52,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { toast } from 'vue-sonner'
-import { supabase } from '@/lib/supabaseClient'
 
 const router = useRouter()
 

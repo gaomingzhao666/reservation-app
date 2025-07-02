@@ -4,7 +4,6 @@ import { watch } from 'vue'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import { Toaster } from '@/components/ui/sonner'
-
 import { useI18n } from 'petite-vue-i18n'
 
 const { locale } = useI18n()
