@@ -33,16 +33,8 @@
         </section>
 
         <Input type="text" placeholder="Search by place" class="w-full p-5 mb-5" />
-
-        <RouterLink
-          :to="item.trim().toLowerCase()"
-          v-for="(item, index) in ['Management', 'Sign Up', 'Sign in']"
-          :key="index"
-        >
-          <Button variant="outline" class="w-full my-2 p-5">{{ item }}</Button>
-        </RouterLink>
-
-        <DrawerFooter> </DrawerFooter>
+        <Navbar />
+        <!-- <DrawerFooter> </DrawerFooter> -->
       </DrawerContent>
     </Drawer>
   </header>

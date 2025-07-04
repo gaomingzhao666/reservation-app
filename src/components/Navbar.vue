@@ -1,10 +1,20 @@
 <template>
-  <nav class="flex justify-start items-center space-x-4 p-4">
-    <RouterLink to="/admin">Management</RouterLink>
+  <nav class="flex flex-col items-start md:flex-row justify-start space-x-2 p-4">
+    <RouterLink to="/admin" class="w-full">
+      <button class="mx-2 hidden md:block">Admin</button>
+      <Button variant="outline" class="w-full my-2 p-5 md:hidden">Admin</Button>
+    </RouterLink>
 
-    <section v-if="false">
-      <RouterLink to="/signup">Sign Up</RouterLink>
-      <RouterLink to="/login">Login</RouterLink>
+    <section v-if="true" class="w-full md:flex space-x-2">
+      <RouterLink to="/signup" class="w-full">
+        <button class="mx-2 text-nowrap hidden md:block">Sign Up</button>
+        <Button :variant="'outline'" class="w-full my-2 p-5 md:hidden">Sign Up</Button>
+      </RouterLink>
+
+      <RouterLink to="/login" class="w-full">
+        <button class="mx-2 hidden md:block">Login</button>
+        <Button variant="outline" class="w-full my-2 p-5 md:hidden">Login</Button>
+      </RouterLink>
     </section>
 
     <Button variant="secondary" v-else @click="testApi()">username</Button>
