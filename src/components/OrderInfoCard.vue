@@ -10,17 +10,17 @@
       </section>
     </CardHeader>
 
-    <CardContent class="flex justify-between items-center">
+    <CardContent class="flex items-center justify-between">
       <h4>{{ serviceTitle }}</h4>
       <p>{{ servicePrice }}</p>
     </CardContent>
 
-    <CardContent class="flex justify-between items-center">
+    <CardContent class="flex items-center justify-between">
       <h4>Service Duration</h4>
       <p>{{ serviceDuration }}</p>
     </CardContent>
 
-    <CardContent class="flex justify-between items-center">
+    <CardContent class="flex items-center justify-between">
       <h4>Service Date</h4>
       <p>{{ serviceDateRange }}</p>
     </CardContent>

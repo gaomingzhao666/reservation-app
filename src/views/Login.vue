@@ -2,7 +2,7 @@
   <main class="flex flex-col items-center justify-center space-y-4">
     <h2 class="text-3xl font-semibold">Login</h2>
 
-    <form class="md:w-xl w-full p-5 space-y-6" @submit="onSubmit">
+    <form class="w-full space-y-6 p-5 md:w-xl" @submit="onSubmit">
       <FormField v-slot="{ componentField }" name="email">
         <FormItem>
           <FormLabel class="font-semibold">Email</FormLabel>

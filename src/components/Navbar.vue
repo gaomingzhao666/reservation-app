@@ -1,19 +1,19 @@
 <template>
-  <nav class="flex flex-col items-start md:flex-row justify-start space-x-2 p-4">
+  <nav class="flex flex-col items-start justify-start space-x-2 p-4 md:flex-row">
     <RouterLink to="/admin" class="w-full cursor-pointer">
-      <button class="mx-2 hidden md:block cursor-pointer">Admin</button>
-      <Button variant="outline" class="w-full my-2 p-5 md:hidden">Admin</Button>
+      <button class="mx-2 hidden cursor-pointer md:block">Admin</button>
+      <Button variant="outline" class="my-2 w-full p-5 md:hidden">Admin</Button>
     </RouterLink>
 
-    <section v-if="true" class="w-full md:flex space-x-2">
+    <section v-if="true" class="w-full space-x-2 md:flex">
       <RouterLink to="/signup" class="w-full">
-        <button class="mx-2 text-nowrap hidden md:block cursor-pointer">Sign Up</button>
-        <Button :variant="'outline'" class="w-full my-2 p-5 md:hidden">Sign Up</Button>
+        <button class="mx-2 hidden cursor-pointer text-nowrap md:block">Sign Up</button>
+        <Button :variant="'outline'" class="my-2 w-full p-5 md:hidden">Sign Up</Button>
       </RouterLink>
 
       <RouterLink to="/login" class="w-full cursor-pointer">
-        <button class="mx-2 hidden md:block cursor-pointer">Login</button>
-        <Button variant="outline" class="w-full my-2 p-5 md:hidden">Login</Button>
+        <button class="mx-2 hidden cursor-pointer md:block">Login</button>
+        <Button variant="outline" class="my-2 w-full p-5 md:hidden">Login</Button>
       </RouterLink>
     </section>
 

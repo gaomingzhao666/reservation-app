@@ -54,7 +54,7 @@ const value = ref({
   <Card
     class="card"
     :class="
-      cn('p-5 w-3xl hover:cursor-pointer hover:ring transition-all', changeStyles.isRing && 'ring')
+      cn('w-3xl p-5 transition-all hover:cursor-pointer hover:ring', changeStyles.isRing && 'ring')
     "
     @click.stop="changeStyles.isRing = !changeStyles.isRing"
   >
@@ -62,7 +62,7 @@ const value = ref({
       <section class="flex items-center justify-start gap-x-4">
         <h3
           for="terms"
-          class="font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          class="leading-none font-semibold peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {{ props.data.serviceTitle }}
         </h3>

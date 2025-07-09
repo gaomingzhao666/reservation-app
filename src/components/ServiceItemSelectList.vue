@@ -1,5 +1,5 @@
 <template>
-  <ul class="border rounded-xl p-5 space-y-4">
+  <ul class="space-y-4 rounded-xl border p-5">
     <li v-for="(item, index) in fakeData" :key="index">
       <ServiceItemSelect :data="item" />
     </li>

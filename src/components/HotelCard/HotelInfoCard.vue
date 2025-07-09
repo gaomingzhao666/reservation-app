@@ -1,10 +1,10 @@
 <template>
-  <Card class="p-5 w-full md:w-5xl">
+  <Card class="w-full p-5 md:w-5xl">
     <CardHeader>
       <section class="flex items-center justify-between">
         <CardTitle>{{ props.data.name }}</CardTitle>
 
-        <section class="flex justify-start items-center gap-x-4">
+        <section class="flex items-center justify-start gap-x-4">
           <RouterLink to="/review">
             <Button size="lg" variant="secondary">Review</Button>
           </RouterLink>
@@ -35,7 +35,7 @@
       </section>
     </CardHeader>
 
-    <CardContent class="flex justify-between items-center flex-wrap gap-y-2 text-sm">
+    <CardContent class="flex flex-wrap items-center justify-between gap-y-2 text-sm">
       <section class="flex items-center justify-start gap-x-2">
         <MapPin />
         <p>{{ props.data.address }}</p>
@@ -55,7 +55,7 @@
 
       <section class="flex items-center justify-start gap-x-2">
         <CreditCard />
-        <section class="flex items-center justify-start gap-x-2 flex-wrap">
+        <section class="flex flex-wrap items-center justify-start gap-x-2">
           <p v-for="(item, index) in props.data.paymentMethods" :key="index">{{ item }},</p>
         </section>
       </section>

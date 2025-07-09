@@ -3,12 +3,12 @@
     <section class="flex items-center justify-center">
       <video
         :src="hotelVideo"
-        class="w-xl h-[434px] rounded-xl object-cover"
+        class="h-[434px] w-xl rounded-xl object-cover"
         :controls="isControls"
         @click="isControls = true"
       ></video>
 
-      <ul class="md:grid grid-cols-2 gap-4 border ml-4 hidden">
+      <ul class="ml-4 hidden grid-cols-2 gap-4 border md:grid">
         <li>
           <img :src="hotelImg1" class="h-52 w-64 rounded-xl" alt="" />
         </li>

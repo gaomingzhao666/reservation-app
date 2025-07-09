@@ -2,7 +2,7 @@
   <div>
     <h2>Select Service</h2>
 
-    <main class="flex flex-col md:flex-row justify-around items-start">
+    <main class="flex flex-col items-start justify-around md:flex-row">
       <section class="flex flex-col gap-y-4">
         <ServiceSelector />
         <ServiceItemSelectList />

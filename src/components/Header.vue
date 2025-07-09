@@ -1,16 +1,16 @@
 <template>
-  <header class="p-5 mb-10 flex items-center justify-between backdrop-blur-xs sticky top-0">
+  <header class="sticky top-0 mb-10 flex items-center justify-between p-5 backdrop-blur-xs">
     <!-- logo -->
     <section class="flex items-center justify-start space-x-4">
       <RouterLink to="/index">
         <h1 class="text-xl font-semibold">Reservation App</h1>
       </RouterLink>
 
-      <Input type="text" :placeholder="t('searchByPlace')" class="w-sm hidden md:block" />
+      <Input type="text" :placeholder="t('searchByPlace')" class="hidden w-sm md:block" />
     </section>
 
     <!-- navbar & controllers -->
-    <section class="md:flex items-center justify-end hidden">
+    <section class="hidden items-center justify-end md:flex">
       <Navbar />
 
       <section class="flex items-center justify-start space-x-4">
@@ -23,7 +23,7 @@
     <Drawer>
       <DrawerTrigger class="block md:hidden"><Menu /></DrawerTrigger>
       <DrawerContent class="h-full p-5">
-        <section class="flex items-center justify-between my-8">
+        <section class="my-8 flex items-center justify-between">
           <h2 class="text-xl font-semibold">Navigation</h2>
 
           <section class="flex items-center justify-start space-x-4">
@@ -32,7 +32,7 @@
           </section>
         </section>
 
-        <Input type="text" placeholder="Search by place" class="w-full p-5 mb-5" />
+        <Input type="text" placeholder="Search by place" class="mb-5 w-full p-5" />
         <Navbar />
         <!-- <DrawerFooter> </DrawerFooter> -->
       </DrawerContent>

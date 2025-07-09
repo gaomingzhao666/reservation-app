@@ -6,8 +6,8 @@
       </Button>
     </DropdownMenuTrigger>
 
-    <DropdownMenuContent class="mr-5 space-y-1 p-2 rounded-xl">
-      <DropdownMenuLabel class="text-sm bg-gray-100 dark:bg-gray-800 rounded-md"
+    <DropdownMenuContent class="mr-5 space-y-1 rounded-xl p-2">
+      <DropdownMenuLabel class="rounded-md bg-gray-100 text-sm dark:bg-gray-800"
         >Only support UI translation</DropdownMenuLabel
       >
       <DropdownMenuSeparator />

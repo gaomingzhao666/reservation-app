@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex flex-nowrap gap-x-4 border rounded-xl p-5 w-fit">
+  <ul class="flex w-fit flex-nowrap gap-x-4 rounded-xl border p-5">
     <li v-for="(item, index) in props.data.categories" :key="index">
       <Button
         :variant="item === selectedCategory ? 'secondary' : 'outline'"
