@@ -59,8 +59,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { toast } from 'vue-sonner'
 import { storeToken } from '@/lib/token'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 const router = useRouter()
 
 const provider = new GoogleAuthProvider()
@@ -69,19 +71,29 @@ const auth = getAuth()
 auth.useDeviceLanguage()
 
 const loginWithGoogle = () => {
-  signInWithPopup(auth, provider).then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
+  signInWithPopup(auth, provider).then(async (result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result)
-    const token = credential?.accessToken
-    // The signed-in user info.
-    const user = result.user
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-    toast.success('Login successful with Google')
 
-    if (token) storeToken(token)
-    else toast.error('Failed to retrieve Google Access Token')
+    if (credential && credential.accessToken) {
+      const token = credential.accessToken
+      storeToken(token)
 
+      // add user to db
+      const user = result.user
+      await addDoc(collection(db, 'user'), {
+        uid: user.uid,
+        email: user.email,
+        username: user.displayName,
+        avatar_url: user.photoURL,
+        // guide user to set birth_at variable because google auth doesn't provide birth_at
+        birth_at: 'undefined',
+      })
+
+      toast.success('Hello, Google User ' + user.displayName)
+      router.push('/index')
+    } else {
+      toast.error('Failed to login with Google')
+    }
     router.push('/index')
   })
 }
