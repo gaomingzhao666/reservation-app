@@ -6,10 +6,8 @@
       </Button>
     </DropdownMenuTrigger>
 
-    <DropdownMenuContent class="mr-5 space-y-1 rounded-xl p-2">
-      <DropdownMenuLabel class="rounded-md bg-gray-100 text-sm dark:bg-gray-800"
-        >Only support UI translation</DropdownMenuLabel
-      >
+    <DropdownMenuContent class="mr-5">
+      <DropdownMenuLabel>Only support UI translation</DropdownMenuLabel>
       <DropdownMenuSeparator />
 
       <DropdownMenuRadioGroup v-model="currentLocale">
