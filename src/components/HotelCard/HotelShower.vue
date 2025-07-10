@@ -35,7 +35,7 @@ import hotelImg1 from '@/assets/images/hotel-1.jpg'
 import hotelImg2 from '@/assets/images/hotel-2.jpg'
 import hotelImg3 from '@/assets/images/hotel-3.jpg'
 import hotelImg4 from '@/assets/images/hotel-4.jpg'
-import hotelImg5 from '@/assets/images/hotel-5.jpg'
+// import hotelImg5 from '@/assets/images/hotel-5.jpg'
 import { ref, type Ref } from 'vue'
 
 const isControls: Ref<boolean> = ref(false)
