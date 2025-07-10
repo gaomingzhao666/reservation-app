@@ -38,15 +38,7 @@ import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 // it's not be filled, we need that schema types from supabase dashboard but we don't have create the project in dashboard yet
 // here we just define the types for the service section and fill the styles and component just for service information
 interface Props {
-  data: {
-    // for service
-    serviceImageUrl: string
-    serviceProviderName: string
-    serviceTitle: string
-    serviceDuration: string
-    servicePrice: string
-    serviceDateRange: string
-  }
+  data: OrderInfo
 }
 const props = defineProps<Props>()
 const {
