@@ -98,5 +98,3 @@ const loginWithGoogle = () => {
   })
 }
 </script>
-
-<style></style>

@@ -12,5 +12,3 @@
 <script lang="ts" setup>
 import ButtonGroup from '@/components/ServiceSelectList.vue'
 </script>
-
-<style></style>

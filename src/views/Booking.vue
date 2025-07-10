@@ -37,5 +37,3 @@ watchEffect(async () => {
   const res = route.params.id
 })
 </script>
-
-<style></style>

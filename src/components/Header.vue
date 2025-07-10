@@ -52,5 +52,3 @@ import { Menu } from 'lucide-vue-next'
 import { useI18n } from 'petite-vue-i18n'
 const { t } = useI18n()
 </script>
-
-<style></style>

@@ -23,5 +23,3 @@ const props = defineProps<Props>()
 
 const selectedCategory = ref(props.data.categories[0])
 </script>
-
-<style></style>

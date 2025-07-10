@@ -52,5 +52,3 @@ const fakeData = [
   },
 ]
 </script>
-
-<style></style>

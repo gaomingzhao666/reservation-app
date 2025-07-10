@@ -47,5 +47,3 @@ const sample = reactive([
   },
 ])
 </script>
-
-<style></style>
