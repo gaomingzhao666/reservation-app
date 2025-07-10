@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', () => {
     username: '',
     avatar_url: '',
     birth_at: '',
+    booked_hotels: [],
   })
 
   const updateUser = (arguUser: User) => {
