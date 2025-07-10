@@ -2,14 +2,14 @@
   <Card class="w-full p-5 md:w-5xl">
     <CardHeader>
       <section class="flex items-center justify-between">
-        <CardTitle>{{ props.data.name }}</CardTitle>
+        <CardTitle>{{ props.data.hotelName }}</CardTitle>
 
         <section class="flex items-center justify-start gap-x-4">
           <RouterLink to="/review">
             <Button size="lg" variant="secondary">Review</Button>
           </RouterLink>
 
-          <RouterLink :to="`/booking/${props.data.name}`">
+          <RouterLink :to="`/booking/${props.data.hotelName}`">
             <Button size="lg">Book Now</Button>
           </RouterLink>
         </section>
@@ -70,9 +70,8 @@ import { Star, MapPin, Clock, CreditCard } from 'lucide-vue-next'
 
 interface Props {
   data: {
-    name: string
+    hotelName: string
     reviewStars: number
-    isOpening: boolean
     openTime: string
     closeTime: string
     address: string
