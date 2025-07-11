@@ -56,13 +56,16 @@
 </template>
 
 <script lang="ts" setup>
-import { watchEffect } from 'vue'
+import { onMounted, reactive, watchEffect, type Reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 import ServiceSelector from '@/components/ServiceSelector.vue'
 import ServiceItemSelectList from '@/components/ServiceItemSelectList.vue'
 import OrderInfoCard from '@/components/OrderInfoCard.vue'
 import { Info, CheckCircle2, Truck } from 'lucide-vue-next'
+
+import { db } from '@/lib/firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -74,7 +77,30 @@ import {
   StepperIndicator,
 } from '@/components/ui/stepper'
 
+import type { DocumentData } from 'firebase/firestore'
+
+let hotelsData: Reactive<DocumentData[]> = reactive([])
+
 const route = useRoute()
+
+const init = async () => {
+  const querySnapshot = await getDocs(collection(db, 'hotel'))
+  // querySnapshot.forEach((doc) => {
+  //   // doc.data() is never undefined for query doc snapshots
+  //   console.log(doc.id, ' => ', doc.data())
+  // })
+  // querySnapshot.forEach((doc) => {
+  //   hotelsData.push(doc.data())
+  //   console.log(doc.data())
+  // })
+  hotelsData = querySnapshot.docs.map((doc) => doc.data())
+
+  console.log(hotelsData)
+}
+
+onMounted(() => {
+  init()
+})
 
 watchEffect(async () => {
   const res = route.params.id
