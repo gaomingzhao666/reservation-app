@@ -4,14 +4,14 @@
       <h2>Order Information</h2>
 
       <section>
-        <img :src="serviceImageUrl" alt="Selected Service's Image" />
+        <h3>{{ orderInfoStore.orderInfo.serviceTitle }}</h3>
 
         <h3>{{ orderInfoStore.orderInfo.serviceProviderName }}</h3>
       </section>
     </CardHeader>
 
     <CardContent class="flex items-center justify-between">
-      <h3>{{ orderInfoStore.orderInfo.serviceTitle }}</h3>
+      <h3>{{ orderInfoStore.orderInfo.serviceItem }}</h3>
       <p>{{ orderInfoStore.orderInfo.servicePrice }}</p>
     </CardContent>
 

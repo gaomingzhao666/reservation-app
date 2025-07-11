@@ -7,6 +7,7 @@ export const useOrderInfoStore = defineStore('orderInfo', () => {
     serviceImageUrl: '',
     serviceProviderName: '',
     serviceTitle: '',
+    serviceItem: '',
     serviceDuration: '',
     servicePrice: '',
     serviceDateRange: '',
@@ -16,7 +17,7 @@ export const useOrderInfoStore = defineStore('orderInfo', () => {
     email: '',
     username: '',
     avatar_url: '',
-    birth_at: '',
+    birth_at: 'April 13, 2002 at 1:00:00 AM UTC+8',
     booked_hotels: [],
   })
 
