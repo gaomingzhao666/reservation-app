@@ -9,4 +9,17 @@ interface HotelInfo {
   payment_methods: string[]
   price: number
   review_stars: number
+
+  services: [
+    {
+      title: string
+      service_items: [
+        {
+          title: string
+          duration: string
+          price: number
+        },
+      ]
+    },
+  ]
 }
