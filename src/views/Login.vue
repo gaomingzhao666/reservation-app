@@ -36,7 +36,28 @@
           Don't have an account? To sign up
         </RouterLink>
       </section>
-      <Button type="submit" @click="loginWithGoogle()"> Login </Button>
+
+      <section class="flex flex-col items-center justify-center space-y-4">
+        <Button
+          type="submit"
+          variant="default"
+          class="w-full cursor-pointer"
+          size="lg"
+          @click="loginWithEmail()"
+        >
+          Login
+        </Button>
+        <Button
+          type="submit"
+          variant="default"
+          class="w-full cursor-pointer"
+          size="lg"
+          @click="loginWithGoogle()"
+        >
+          <Google class="mr-2 size-5" />
+          Login with Google
+        </Button>
+      </section>
     </form>
   </main>
 </template>
@@ -56,9 +77,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import Google from '@/components/icons/Google.vue'
 import { Input } from '@/components/ui/input'
 import { toast } from 'vue-sonner'
 import { storeToken } from '@/lib/token'
+import { googleIcon } from ''
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { addDoc, collection } from 'firebase/firestore'
