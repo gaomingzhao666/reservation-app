@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col items-start justify-around md:flex-row">
     <main class="flex flex-col gap-y-4">
-      <Stepper class="flex w-full items-start gap-2">
+      <Stepper class="flex w-full items-start gap-2" :default-value="2">
         <StepperItem
           v-for="step in steps"
           :key="step.step"
@@ -36,8 +36,7 @@
       </Stepper>
 
       <h2 class="text-xl font-semibold">Select Service</h2>
-      <ServiceSelector />
-      <ServiceItemSelectList />
+      <RouterView></RouterView>
     </main>
 
     <aside class="sticky top-24 w-full max-w-sm">
@@ -58,9 +57,6 @@
 <script lang="ts" setup>
 import { onMounted, reactive, watchEffect, type Reactive } from 'vue'
 import { useRoute } from 'vue-router'
-
-import ServiceSelector from '@/components/ServiceSelector.vue'
-import ServiceItemSelectList from '@/components/ServiceItemSelectList.vue'
 import OrderInfoCard from '@/components/OrderInfoCard.vue'
 import { Info, CheckCircle2, Truck } from 'lucide-vue-next'
 
@@ -118,6 +114,7 @@ const steps = [
     title: 'Input Necessary Information',
     description: 'A few details about you so we can take identification',
     icon: Info,
+    state: 'active',
   },
   {
     step: 3,
