@@ -16,11 +16,10 @@ export const useOrderInfoStore = defineStore('orderInfo', () => {
     },
 
     // extends from type User
-    uid: '',
     email: '',
     username: '',
     avatar_url: '',
-    birth_at: 'April 13, 2002 at 1:00:00 AM UTC+8',
+    age: '',
     booked_hotels: [],
   })
 

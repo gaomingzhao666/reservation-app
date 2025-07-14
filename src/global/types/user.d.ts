@@ -3,7 +3,7 @@ interface User {
   email: string
   username: string
   avatar_url: string
-  birth_at: string
+  age: number | string
 
   booked_hotels: HotelInfo[]
 }

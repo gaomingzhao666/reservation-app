@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', () => {
     email: '',
     username: '',
     avatar_url: '',
-    birth_at: '',
+    age: '',
     booked_hotels: [],
   })
 
