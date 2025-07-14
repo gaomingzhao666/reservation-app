@@ -24,7 +24,7 @@
     "firebase": "^11.10.0",
     "firebaseui": "^6.1.0",
     "lucide-vue-next": "^0.525.0",
-    "petite-vue-i18n": "12.0.0-alpha.2",
+    "petite-vue-i18n": "12.0.0-alpha.3",
     "pinia": "^3.0.3",
     "reka-ui": "^2.3.2",
     "tailwind-merge": "^3.3.1",
