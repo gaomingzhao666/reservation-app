@@ -1,9 +1,10 @@
 <template>
   <section>
+    <h2 class="text-xl font-semibold">Select Service</h2>
+
     <ButtonGroup
       :data="{
-        categories: ['Room', 'Room', 'Room', 'Room', 'Room', 'selectedRoom'],
-        selectedCategory: 'selectedRoom',
+        categories: ['Room', 'selectedRoom'],
       }"
     />
   </section>

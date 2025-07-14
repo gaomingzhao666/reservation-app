@@ -35,7 +35,6 @@
         </StepperItem>
       </Stepper>
 
-      <h2 class="text-xl font-semibold">Select Service</h2>
       <RouterView></RouterView>
     </main>
 
