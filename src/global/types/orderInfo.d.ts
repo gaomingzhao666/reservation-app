@@ -5,5 +5,8 @@ interface OrderInfo extends User {
   serviceItem: string
   serviceDuration: string
   servicePrice: string
-  serviceDateRange: string
+  serviceDateRange: {
+    start: string
+    end: string
+  }
 }

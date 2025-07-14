@@ -10,7 +10,10 @@ export const useOrderInfoStore = defineStore('orderInfo', () => {
     serviceItem: '',
     serviceDuration: '',
     servicePrice: '',
-    serviceDateRange: '',
+    serviceDateRange: {
+      start: '',
+      end: '',
+    },
 
     // extends from type User
     uid: '',
