@@ -46,7 +46,17 @@
     <!-- </CardContent> -->
 
     <CardFooter>
-      <Button>Continue</Button>
+      <Button
+        @click="route.path === '/booking/:id/services' && router.push('/booking/:id/personal-info')"
+        v-if="route.path === '/booking/:id/services'"
+        >Continue</Button
+      >
+      <Button
+        @click="route.path === '/booking/:id/personal-info' && router.push('/booking/:id/Confirm')"
+        v-if="route.path === '/booking/:id/personal-info'"
+        >Continue</Button
+      >
+      <Button v-if="route.path === '/booking/:id/Confirm'">Submit</Button>
     </CardFooter>
   </Card>
 </template>
@@ -56,7 +66,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 import { useOrderInfoStore } from '@/stores/orderInfo'
 import { useTimeAgo } from '@vueuse/core'
+import { useRoute, useRouter } from 'vue-router'
 
+const route = useRoute()
+const router = useRouter()
 const orderInfoStore = useOrderInfoStore()
 const timeAgo = useTimeAgo()
 import dayjs from 'dayjs'
