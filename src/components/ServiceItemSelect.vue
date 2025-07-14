@@ -3,7 +3,7 @@ import type { DateRange } from 'reka-ui'
 import { CalendarDate, DateFormatter, getLocalTimeZone } from '@internationalized/date'
 
 import { Calendar as CalendarIcon } from 'lucide-vue-next'
-import { type Ref, ref } from 'vue'
+import { type Ref, ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { RangeCalendar } from '@/components/ui/range-calendar'
@@ -11,6 +11,7 @@ import { RangeCalendar } from '@/components/ui/range-calendar'
 import { Card, CardHeader, CardFooter } from '@/components/ui/card'
 import { reactive, onMounted, onUnmounted } from 'vue'
 import { cn } from '@/lib/utils'
+import { useOrderInfoStore } from '@/stores/orderInfo'
 
 interface Props {
   data: {
@@ -21,42 +22,62 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-interface ChangeStyles {
+const value: Ref<boolean> = ref(false)
+
+interface Styles {
   isRing: boolean
 }
-const changeStyles = reactive<ChangeStyles>({
+const styles = reactive<Styles>({
   isRing: false,
 })
 
-const handleClickOutside = (event: MouseEvent) => {
-  if (!event.target || !(event.target as HTMLElement).closest('.card')) {
-    changeStyles.isRing = false
-  }
-}
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
+// temporarily remove outside click cancel logic
+// const handleClickOutside = (event: MouseEvent) => {
+//   if (!event.target || !(event.target as HTMLElement).closest('.card')) {
+//     styles.isRing = false
+//     value.value = false
+//   }
+// }
+// onMounted(() => {
+//   document.addEventListener('click', handleClickOutside)
+// })
+// onUnmounted(() => {
+//   document.removeEventListener('click', handleClickOutside)
+// })
 
 // date picker logic
 const df = new DateFormatter('en-US', {
   dateStyle: 'medium',
 })
-const value = ref({
+const dateValue = ref({
   start: new CalendarDate(2025, 1, 20),
   end: new CalendarDate(2025, 1, 20).add({ days: 20 }),
 }) as Ref<DateRange>
+
+const clickAction = () => {
+  styles.isRing = !styles.isRing
+  value.value = !value.value
+}
+
+const orderInfoStore = useOrderInfoStore()
+const sendOrderInfo = () => {
+  orderInfoStore.orderInfo.serviceItem = props.data.serviceTitle
+  orderInfoStore.orderInfo.servicePrice = props.data.servicePrice
+  orderInfoStore.orderInfo.serviceDuration = props.data.serviceDuration
+  orderInfoStore.orderInfo.serviceDateRange.start = dateValue.value.start?.toString() ?? ''
+  orderInfoStore.orderInfo.serviceDateRange.end = dateValue.value.end?.toString() ?? ''
+}
+watch([() => value.value, () => dateValue.value], () => {
+  sendOrderInfo()
+  console.log(value.value)
+})
 </script>
 
 <template>
   <Card
     class="card"
-    :class="
-      cn('w-3xl p-5 transition-all hover:cursor-pointer hover:ring', changeStyles.isRing && 'ring')
-    "
-    @click.stop="changeStyles.isRing = !changeStyles.isRing"
+    :class="cn('w-3xl p-5 transition-all hover:cursor-pointer hover:ring', styles.isRing && 'ring')"
+    @click.prevent="clickAction()"
   >
     <CardHeader class="flex flex-col gap-y-2">
       <section class="flex items-center justify-start gap-x-4">
@@ -87,14 +108,14 @@ const value = ref({
             "
           >
             <CalendarIcon class="mr-2 h-4 w-4" />
-            <template v-if="value.start">
-              <template v-if="value.end">
-                {{ df.format(value.start.toDate(getLocalTimeZone())) }} -
-                {{ df.format(value.end.toDate(getLocalTimeZone())) }}
+            <template v-if="dateValue.start">
+              <template v-if="dateValue.end">
+                {{ df.format(dateValue.start.toDate(getLocalTimeZone())) }} -
+                {{ df.format(dateValue.end.toDate(getLocalTimeZone())) }}
               </template>
 
               <template v-else>
-                {{ df.format(value.start.toDate(getLocalTimeZone())) }}
+                {{ df.format(dateValue.start.toDate(getLocalTimeZone())) }}
               </template>
             </template>
             <template v-else> Pick a date </template>
@@ -102,10 +123,10 @@ const value = ref({
         </PopoverTrigger>
         <PopoverContent class="w-auto p-0">
           <RangeCalendar
-            v-model="value"
+            v-model="dateValue"
             initial-focus
             :number-of-months="2"
-            @update:start-value="(startDate) => (value.start = startDate)"
+            @update:start-value="(startDate) => (dateValue.start = startDate)"
           />
         </PopoverContent>
       </Popover>
