@@ -1,49 +1,42 @@
 <template>
   <main>
-    <HotelCard v-for="(item, index) in sample" :key="index" :data="item" class="my-10" />
+    <HotelCard
+      v-for="(item, index) in hotels"
+      :key="index"
+      :hotel="{
+        name: item.hotel_name,
+        reviewStars: item.review_stars,
+        isOpening:
+          isNowBetweenDates(item.opening_date, item.closing_date) &&
+          isNowBetweenTimes(item.open_time, item.close_time),
+        openTime: item.open_time,
+        closeTime: item.close_time,
+        address: item.address,
+        openingDate: item.opening_date,
+        closingDate: item.closing_date,
+        paymentMethods: item.payment_methods,
+        price: item.price,
+      }"
+      class="my-10"
+    />
   </main>
 </template>
 
 <script lang="ts" setup>
 import HotelCard from '@/components/HotelCard/HotelCard.vue'
-import { reactive } from 'vue'
+import { onMounted, reactive, type Reactive } from 'vue'
+import { db } from '@/lib/firebase'
+import { collection, getDocs, type DocumentData } from 'firebase/firestore'
 
-const sample = reactive([
-  {
-    name: 'Bistro Bliss',
-    reviewStars: 4.5,
-    isOpening: true,
-    openTime: '11:00 AM',
-    closeTime: '10:00 PM',
-    address: '123 Main St, Anytown, USA',
-    openingDate: '2020-01-01',
-    closingDate: '2022-12-31',
-    paymentMethods: ['Cash', 'Credit', 'Debit'],
-    price: 25.99,
-  },
-  {
-    name: 'Tasty Tacos',
-    reviewStars: 4.2,
-    isOpening: false,
-    openTime: '12:00 PM',
-    closeTime: '9:00 PM',
-    address: '456 Elm St, Othertown, USA',
-    openingDate: '2019-06-01',
-    closingDate: '2021-12-31',
-    paymentMethods: ['Cash', 'Credit'],
-    price: 18.99,
-  },
-  {
-    name: 'Sushi Haven',
-    reviewStars: 4.8,
-    isOpening: true,
-    openTime: '5:00 PM',
-    closeTime: '11:00 PM',
-    address: '789 Oak St, Thistown, USA',
-    openingDate: '2021-03-01',
-    closingDate: '2023-12-31',
-    paymentMethods: ['Cash', 'Credit', 'Debit', 'Apple Pay'],
-    price: 32.99,
-  },
-])
+import { isNowBetweenDates, isNowBetweenTimes } from '@/lib/isBetween'
+
+let hotels: Reactive<DocumentData[]> = reactive([])
+
+const init = async () => {
+  const querySnapshot = await getDocs(collection(db, 'hotel'))
+  hotels = await querySnapshot.docs.map((doc) => doc.data())
+}
+onMounted(() => {
+  init()
+})
 </script>
