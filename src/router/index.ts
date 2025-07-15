@@ -28,22 +28,19 @@ const router = createRouter({
       name: 'Booking',
       component: () => import('@/views/Booking/Booking.vue'),
       children: [
+        { path: '', component: () => import('@/views/Booking/Services.vue') },
         {
-          path: '/booking/:id',
-          redirect: '/booking/:id/services',
-        },
-        {
-          path: '/booking/:id/services',
+          path: 'services',
           name: 'Services',
           component: () => import('@/views/Booking/Services.vue'),
         },
         {
-          path: '/booking/:id/personal-info',
+          path: 'personal-info',
           name: 'PersonalInfo',
           component: () => import('@/views/Booking/PersonalInfo.vue'),
         },
         {
-          path: '/booking/:id/confirm',
+          path: 'confirm',
           name: 'Confirm',
           component: () => import('@/views/Booking/Confirm.vue'),
         },

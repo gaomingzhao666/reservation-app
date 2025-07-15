@@ -4,6 +4,7 @@
       v-for="(item, index) in hotels"
       :key="index"
       :hotel="{
+        hotelId: item.hotel_id,
         name: item.hotel_name,
         reviewStars: item.review_stars,
         isOpening:

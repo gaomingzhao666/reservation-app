@@ -12,6 +12,7 @@ import HotelInfoCard from '@/components/HotelCard/HotelInfoCard.vue'
 
 interface Props {
   hotel: {
+    hotelId: string
     name: string
     reviewStars: number
     isOpening: boolean
