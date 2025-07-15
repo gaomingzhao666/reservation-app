@@ -104,5 +104,3 @@ const onSubmit = handleSubmit((values) => {
   orderInfoStore.orderInfo.age = age.value
 })
 </script>
-
-<style></style>
