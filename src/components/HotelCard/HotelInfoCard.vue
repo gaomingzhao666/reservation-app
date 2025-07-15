@@ -2,14 +2,14 @@
   <Card class="w-full p-5 md:w-5xl">
     <CardHeader>
       <section class="flex items-center justify-between">
-        <CardTitle>{{ props.data.hotelName }}</CardTitle>
+        <CardTitle>{{ props.hotel.hotelName }}</CardTitle>
 
         <section class="flex items-center justify-start gap-x-4">
           <RouterLink to="/review">
             <Button size="lg" variant="secondary">Review</Button>
           </RouterLink>
 
-          <RouterLink :to="`/booking/${props.data.hotelName}`">
+          <RouterLink :to="`/booking/${props.hotel.hotelName}`">
             <Button size="lg">Book Now</Button>
           </RouterLink>
         </section>
@@ -38,25 +38,25 @@
     <CardContent class="flex flex-wrap items-center justify-between gap-y-2 text-sm">
       <section class="flex items-center justify-start gap-x-2">
         <MapPin />
-        <p>{{ props.data.address }}</p>
+        <p>{{ props.hotel.address }}</p>
       </section>
 
       <section class="flex items-center justify-start gap-x-2">
         <Clock />
 
-        <p>{{ props.data.openingDate }} - {{ props.data.closingDate }}</p>
+        <p>{{ props.hotel.openingDate }} - {{ props.hotel.closingDate }}</p>
 
         <section>
           <h5>Closed</h5>
 
-          <p>{{ props.data.openTime }} - {{ props.data.closeTime }}</p>
+          <p>{{ props.hotel.openTime }} - {{ props.hotel.closeTime }}</p>
         </section>
       </section>
 
       <section class="flex items-center justify-start gap-x-2">
         <CreditCard />
         <section class="flex flex-wrap items-center justify-start gap-x-2">
-          <p v-for="(item, index) in props.data.paymentMethods" :key="index">{{ item }},</p>
+          <p v-for="(item, index) in props.hotel.paymentMethods" :key="index">{{ item }},</p>
         </section>
       </section>
     </CardContent>
@@ -69,7 +69,7 @@ import { Button } from '@/components/ui/button'
 import { Star, MapPin, Clock, CreditCard } from 'lucide-vue-next'
 
 interface Props {
-  data: {
+  hotel: {
     hotelName: string
     reviewStars: number
     openTime: string

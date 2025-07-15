@@ -2,7 +2,7 @@
   <section class="flex flex-col items-center justify-center gap-y-5">
     <HotelShower />
 
-    <HotelInfoCard :data="props.data" />
+    <HotelInfoCard :hotel="props.hotel" />
   </section>
 </template>
 
@@ -11,7 +11,7 @@ import HotelShower from '@/components/HotelCard/HotelShower.vue'
 import HotelInfoCard from '@/components/HotelCard/HotelInfoCard.vue'
 
 interface Props {
-  data: {
+  hotel: {
     name: string
     reviewStars: number
     isOpening: boolean
