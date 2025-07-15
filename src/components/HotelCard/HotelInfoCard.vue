@@ -70,7 +70,7 @@ import { Star, MapPin, Clock, CreditCard } from 'lucide-vue-next'
 
 interface Props {
   hotel: {
-    hotelName: string
+    name: string
     reviewStars: number
     openTime: string
     closeTime: string
