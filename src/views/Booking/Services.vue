@@ -7,5 +7,3 @@
 import ServiceSelector from '@/components/ServiceSelector.vue'
 import ServiceItemSelectList from '@/components/ServiceItemSelectList.vue'
 </script>
-
-<style></style>
