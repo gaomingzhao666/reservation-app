@@ -16,12 +16,12 @@
     </CardContent>
 
     <CardContent class="flex items-center justify-between">
-      <h3>Service Duration</h3>
+      <h3>Duration</h3>
       <p>{{ orderInfoStore.orderInfo.serviceDuration }}</p>
     </CardContent>
 
     <CardContent class="flex items-center justify-between">
-      <h3>Service Date</h3>
+      <h3>Date</h3>
       <p>
         {{ orderInfoStore.orderInfo.serviceDateRange.start }} -
         {{ orderInfoStore.orderInfo.serviceDateRange.end }}
@@ -29,13 +29,18 @@
     </CardContent>
 
     <CardContent class="flex items-center justify-between">
-      <h3>Customer Name</h3>
+      <h3>Name</h3>
       <p>{{ orderInfoStore.orderInfo.username }}</p>
     </CardContent>
 
     <CardContent class="flex items-center justify-between">
       <h3>Email</h3>
       <p>{{ orderInfoStore.orderInfo.email }}</p>
+    </CardContent>
+
+    <CardContent class="flex items-center justify-between">
+      <h3>Age</h3>
+      <p>{{ orderInfoStore.orderInfo.age }}</p>
     </CardContent>
 
     <!-- <CardContent class="flex items-center justify-between">
