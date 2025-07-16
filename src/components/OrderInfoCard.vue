@@ -52,16 +52,24 @@
 
     <CardFooter>
       <Button
-        @click="route.path === '/booking/:id/services' && router.push('/booking/:id/personal-info')"
-        v-if="route.path === '/booking/:id/services'"
+        @click="
+          route.path === `/booking/${route.params.id}` &&
+          router.push(`/booking/${route.params.id}/personal-info`)
+        "
+        v-if="route.path === `/booking/${route.params.id}`"
         >Continue</Button
       >
       <Button
-        @click="route.path === '/booking/:id/personal-info' && router.push('/booking/:id/Confirm')"
-        v-if="route.path === '/booking/:id/personal-info'"
+        @click="
+          route.path === `/booking/${route.params.id}/personal-info` &&
+          router.push(`/booking/${route.params.id}/confirm`)
+        "
+        v-if="route.path === `/booking/${route.params.id}/personal-info`"
         >Continue</Button
       >
-      <Button v-if="route.path === '/booking/:id/Confirm'">Submit</Button>
+      <Button v-if="route.path === `/booking/${route.params.id}/confirm`" @click="submitOrder()"
+        >Submit</Button
+      >
     </CardFooter>
   </Card>
 </template>
@@ -73,11 +81,32 @@ import { useOrderInfoStore } from '@/stores/orderInfo'
 import { useTimeAgo } from '@vueuse/core'
 import { useRoute, useRouter } from 'vue-router'
 
+import { db } from '@/lib/firebase'
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
+import { toast } from 'vue-sonner'
+
 const route = useRoute()
+console.log(route.params.id)
+
 const router = useRouter()
 const orderInfoStore = useOrderInfoStore()
-const timeAgo = useTimeAgo()
-import dayjs from 'dayjs'
+
+const auth = getAuth()
+const user = auth.currentUser
+console.log('route path: ' + route.path)
+console.log(`/booking/${route.params.id}/personal-info`)
+
+const submitOrder = async () => {
+  if (user) {
+    const userRef = doc(db, 'user', user.uid)
+
+    await updateDoc(userRef, {
+      booked_hotels: arrayUnion({}),
+    })
+    toast.success('Order submitted successfully.')
+  } else toast.error('You must be logged in to submit an order.')
+}
 
 // const formattedBirthAtYear = dayjs.utc(orderInfoStore.orderInfo.birth_at).format('YYYY/MM/DD')
 // const formattedBirthAtMonth = dayjs(orderInfoStore.orderInfo.birth_at).format('MM')
