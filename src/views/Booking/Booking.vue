@@ -1,7 +1,10 @@
 <template>
   <section class="flex flex-col items-start justify-around md:flex-row">
     <main class="flex flex-col gap-y-4">
-      <Stepper class="flex w-full items-start gap-2" :default-value="2">
+      <Stepper
+        class="flex w-full items-start gap-2"
+        :default-value="stepperValueStore.setpperValue"
+      >
         <StepperItem
           v-for="step in steps"
           :key="step.step"
@@ -39,28 +42,20 @@
     </main>
 
     <aside class="sticky top-24 w-full max-w-sm">
-      <OrderInfoCard
-        :data="{
-          serviceImageUrl: 'https://picsum.photos/200',
-          serviceProviderName: 'John Doe',
-          serviceTitle: 'Haircut',
-          serviceDuration: '1 hour',
-          servicePrice: '$20.00',
-          serviceDateRange: '2024-01-01 - 2024-01-01',
-        }"
-      />
+      <OrderInfoCard />
     </aside>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, watchEffect, type Reactive } from 'vue'
+import { onMounted, reactive, watch, type Reactive, ref, type Ref } from 'vue'
 import { useRoute } from 'vue-router'
 import OrderInfoCard from '@/components/OrderInfoCard.vue'
 import { Info, CheckCircle2, Truck } from 'lucide-vue-next'
+import { useStepperValueStore } from '@/stores/stepper'
 
 import { db } from '@/lib/firebase'
-import { collection, getDocs } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -73,33 +68,34 @@ import {
 } from '@/components/ui/stepper'
 
 import type { DocumentData } from 'firebase/firestore'
+import { toast } from 'vue-sonner'
+import { useOrderInfoStore } from '@/stores/orderInfo'
 
-let hotelsData: Reactive<DocumentData[]> = reactive([])
+let hotel: Reactive<DocumentData> = reactive({})
 
 const route = useRoute()
+const stepperValueStore = useStepperValueStore()
+const orderInfoStore = useOrderInfoStore()
 
 const init = async () => {
-  const querySnapshot = await getDocs(collection(db, 'hotel'))
-  // querySnapshot.forEach((doc) => {
-  //   // doc.data() is never undefined for query doc snapshots
-  //   console.log(doc.id, ' => ', doc.data())
-  // })
-  // querySnapshot.forEach((doc) => {
-  //   hotelsData.push(doc.data())
-  //   console.log(doc.data())
-  // })
-  hotelsData = querySnapshot.docs.map((doc) => doc.data())
+  orderInfoStore.orderInfo.hotelId = route.params.id.toString()
+  const docRef = doc(db, 'hotel', route.params.id.toString())
+  const docSnap = await getDoc(docRef)
 
-  console.log(hotelsData)
+  if (docSnap.exists()) hotel = docSnap.data()
+  else toast.error('Hotel data not found, Please try again later.')
 }
 
 onMounted(() => {
   init()
 })
 
-watchEffect(async () => {
-  const res = route.params.id
-})
+watch(
+  () => route.params.id,
+  () => {
+    init()
+  },
+)
 
 const steps = [
   {
