@@ -1,4 +1,5 @@
 interface HotelInfo {
+  hotel_id: string
   address: string
   close_time: string
   closing_date: string

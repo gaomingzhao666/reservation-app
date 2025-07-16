@@ -1,4 +1,5 @@
 interface OrderInfo extends User {
+  hotelId: string
   serviceImageUrl: string
   serviceProviderName: string
   serviceTitle: string

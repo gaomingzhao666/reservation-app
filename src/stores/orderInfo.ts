@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useOrderInfoStore = defineStore('orderInfo', () => {
   const orderInfo: Reactive<OrderInfo> = reactive({
+    hotelId: '',
     // origin type OrderInfo
     serviceImageUrl: '',
     serviceProviderName: '',
@@ -16,6 +17,7 @@ export const useOrderInfoStore = defineStore('orderInfo', () => {
     },
 
     // extends from type User
+    uid: '',
     email: '',
     username: '',
     avatar_url: '',
