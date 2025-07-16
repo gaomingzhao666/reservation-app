@@ -25,10 +25,17 @@
             </FormItem>
           </FormField>
 
-          <FormField name="age">
+          <FormField v-slot="{ value }" name="age">
             <FormItem>
               <FormLabel>Age</FormLabel>
-              <NumberField id="age" :default-value="20" :min="1">
+              <NumberField
+                @update:model-value="
+                  (v) => {
+                    v ? setFieldValue('age', v) : setFieldValue('age', undefined)
+                  }
+                "
+                :model-value="value"
+              >
                 <NumberFieldContent>
                   <NumberFieldDecrement />
                   <NumberFieldInput />
@@ -79,6 +86,7 @@ import { app } from '@/lib/firebase'
 import { useOrderInfoStore } from '@/stores/orderInfo'
 
 const auth = getAuth(app)
+const orderInfoStore = useOrderInfoStore()
 const userInfo = auth.currentUser
 
 const formSchema = toTypedSchema(
@@ -89,18 +97,20 @@ const formSchema = toTypedSchema(
       .max(50)
       .default(userInfo?.displayName ?? ''),
     email: z.email().default(userInfo?.email ?? ''),
+    age: z.number().min(1).max(120),
   }),
 )
 
-const { handleSubmit } = useForm({
+const { handleSubmit, setFieldValue } = useForm({
   validationSchema: formSchema,
+  initialValues: {
+    age: 18,
+  },
 })
 
-const orderInfoStore = useOrderInfoStore()
-const age: Ref<number> = ref(20)
 const onSubmit = handleSubmit((values) => {
   orderInfoStore.orderInfo.username = values.username
   orderInfoStore.orderInfo.email = values.email
-  orderInfoStore.orderInfo.age = age.value
+  orderInfoStore.orderInfo.age = values.age
 })
 </script>
