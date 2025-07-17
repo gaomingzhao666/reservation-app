@@ -81,7 +81,6 @@ import Google from '@/components/icons/Google.vue'
 import { Input } from '@/components/ui/input'
 import { toast } from 'vue-sonner'
 import { storeToken } from '@/lib/token'
-import { googleIcon } from ''
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { addDoc, collection } from 'firebase/firestore'
@@ -109,7 +108,7 @@ const loginWithGoogle = () => {
         username: user.displayName,
         avatar_url: user.photoURL,
         // guide user to set birth_at variable because google auth doesn't provide birth_at
-        birth_at: 'undefined',
+        age: 18,
       })
 
       toast.success('Hello, Google User ' + user.displayName)
