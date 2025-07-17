@@ -78,11 +78,10 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 import { useOrderInfoStore } from '@/stores/orderInfo'
-import { useTimeAgo } from '@vueuse/core'
 import { useRoute, useRouter } from 'vue-router'
 
 import { db } from '@/lib/firebase'
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { doc, runTransaction, updateDoc, arrayUnion } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { toast } from 'vue-sonner'
 
@@ -99,13 +98,63 @@ console.log(`/booking/${route.params.id}/personal-info`)
 
 const submitOrder = async () => {
   if (user) {
-    const userRef = doc(db, 'user', user.uid)
+    // const hotelRef = doc(db, 'hotel', route.params.id.toString())
+    // const userDocRef = doc(db, 'user', user.uid.toString())
 
+    //     const bookedHotels = await runTransaction(db, async (transaction) => {
+    //       const userDoc = await transaction.get(userDocRef)
+
+    //       if (!userDoc.exists()) toast.error('User does not exist.')
+
+    //       transaction.update(userDocRef, {
+    //         booked_hotels: {
+    //           hotel: hotelRef,
+    //           service_title: orderInfoStore.orderInfo.serviceTitle,
+    //           service_items: {
+    //             item_title: orderInfoStore.orderInfo.serviceItem,
+    //             duration: orderInfoStore.orderInfo.serviceDuration,
+    //             price: orderInfoStore.orderInfo.servicePrice,
+    //             date_range: {
+    //               start: orderInfoStore.orderInfo.serviceDateRange.start,
+    //               end: orderInfoStore.orderInfo.serviceDateRange.end,
+    //             },
+    //           },
+    //         },
+    //       })
+    //     })
+    //   }
+    // }
+
+    const hotelRef = doc(db, 'hotel', route.params.id.toString())
+    // const docSnap = await getDoc(docRef)
+
+    const userRef = doc(db, 'user', user.uid.toString())
     await updateDoc(userRef, {
-      booked_hotels: arrayUnion({}),
+      booked_hotels: arrayUnion({
+        hotel: hotelRef,
+        service_title: orderInfoStore.orderInfo.serviceTitle,
+        service_items: {
+          item_title: orderInfoStore.orderInfo.serviceItem,
+          duration: orderInfoStore.orderInfo.serviceDuration,
+          price: orderInfoStore.orderInfo.servicePrice,
+          date_range: {
+            start: orderInfoStore.orderInfo.serviceDateRange.start,
+            end: orderInfoStore.orderInfo.serviceDateRange.end,
+          },
+        },
+      }),
     })
-    toast.success('Order submitted successfully.')
-  } else toast.error('You must be logged in to submit an order.')
+      .then(() => {
+        router.push('/order')
+        toast.success('Order submitted successfully.')
+      })
+      .catch(() => {
+        toast.error('Failed to submit order. Please try again later.')
+      })
+  } else {
+    router.push('/login')
+    toast.error('You must be logged in to submit an order.')
+  }
 }
 
 // const formattedBirthAtYear = dayjs.utc(orderInfoStore.orderInfo.birth_at).format('YYYY/MM/DD')
