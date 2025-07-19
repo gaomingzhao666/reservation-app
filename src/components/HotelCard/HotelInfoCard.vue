@@ -9,9 +9,18 @@
             <Button size="lg" variant="secondary">Review</Button>
           </RouterLink>
 
-          <RouterLink :to="`/booking/${props.hotel.hotelId}`">
+          <RouterLink :to="`/booking/${props.hotel.hotelId}`" v-if="props.status.useFor === 'info'">
             <Button size="lg">Book Now</Button>
           </RouterLink>
+
+          <!-- if outdate, display expired. if still in available date, display used or not used -->
+          <Button size="lg" variant="default" v-if="props.status.useFor === 'order'">{{
+            isNowBetweenDates(props.hotel.openingDate, props.hotel.closingDate)
+              ? props.status.isUsed
+                ? 'Completed'
+                : 'Progressing'
+              : 'Expired'
+          }}</Button>
         </section>
       </section>
 
@@ -67,6 +76,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Star, MapPin, Clock, CreditCard } from 'lucide-vue-next'
+import { isNowBetweenDates } from '@/lib/isBetween'
 
 interface Props {
   hotel: {
@@ -81,6 +91,12 @@ interface Props {
     closingDate: string
     paymentMethods: string[]
     price: number
+  }
+  status: {
+    // order used for /user/orders path, and info used for /index path
+    useFor: 'order' | 'info'
+    // for judge if the order is used or not
+    isUsed?: boolean
   }
 }
 

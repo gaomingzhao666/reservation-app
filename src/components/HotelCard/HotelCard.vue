@@ -2,7 +2,7 @@
   <section class="flex flex-col items-center justify-center gap-y-5">
     <HotelShower />
 
-    <HotelInfoCard :hotel="props.hotel" />
+    <HotelInfoCard :hotel="props.hotel" :status="{ useFor: 'info' }" />
   </section>
 </template>
 

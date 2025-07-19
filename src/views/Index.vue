@@ -18,6 +18,7 @@
         paymentMethods: item.payment_methods,
         price: item.price,
       }"
+      :status:="{ useFor: 'info' }"
       class="my-10"
     />
   </main>
