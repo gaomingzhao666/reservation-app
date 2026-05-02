@@ -2306,6 +2306,8 @@ packages:
 
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
@@ -3468,6 +3470,7 @@ snapshots:
 
   '@types/node@24.12.2':
     dependencies:
+      undici-types: 7.16.0
       undici-types: 7.16.0
 
   '@types/web-bluetooth@0.0.20': {}
@@ -4718,6 +4721,7 @@ snapshots:
 
   typescript@5.8.3: {}
 
+  undici-types@7.16.0: {}
   undici-types@7.16.0: {}
 
   unicorn-magic@0.3.0: {}
