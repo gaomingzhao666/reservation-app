@@ -1,12 +1,16 @@
 import { ref, type Ref } from 'vue'
-import { defineStore } from 'pinia'
+import { defineStore, acceptHMRUpdate } from 'pinia'
 
-export const useStepperValueStore = defineStore('setpperValue', () => {
-  const setpperValue: Ref<number> = ref(1)
+export const useStepperValueStore = defineStore('stepperValue', () => {
+  const stepperValue: Ref<number> = ref(1)
 
   const updateStepperValue = (value: number) => {
-    setpperValue.value = value
+    stepperValue.value = value
   }
 
-  return { updateStepperValue, setpperValue }
+  return { updateStepperValue, stepperValue }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useStepperValueStore, import.meta.hot))
+}

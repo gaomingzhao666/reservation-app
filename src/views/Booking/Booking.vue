@@ -3,7 +3,7 @@
     <main class="flex flex-col gap-y-4">
       <Stepper
         class="flex w-full items-start gap-2"
-        :default-value="stepperValueStore.setpperValue"
+        v-model:default-value="stepperValueStore.stepperValue"
       >
         <StepperItem
           v-for="step in steps"
@@ -64,6 +64,7 @@ import {
   StepperItem,
   StepperSeparator,
   StepperTitle,
+  StepperTrigger,
   StepperIndicator,
 } from '@/components/ui/stepper'
 
@@ -79,10 +80,10 @@ const orderInfoStore = useOrderInfoStore()
 
 const init = async () => {
   orderInfoStore.orderInfo.hotelId = route.params.id.toString()
-  const docRef = doc(db, 'hotel', route.params.id.toString())
-  const docSnap = await getDoc(docRef)
+  const hotelRef = doc(db, 'hotel', route.params.id.toString())
+  const hotelSnap = await getDoc(hotelRef)
 
-  if (docSnap.exists()) hotel = docSnap.data()
+  if (hotelSnap.exists()) hotel = hotelSnap.data()
   else toast.error('Hotel data not found, Please try again later.')
 }
 
@@ -96,7 +97,6 @@ watch(
     init()
   },
 )
-
 const steps = [
   {
     step: 1,

@@ -1,15 +1,51 @@
 <template>
   <main>
-    <HotelCard
-      v-for="(item, index) in orders"
-      :key="index"
-      :hotel="item.hotel"
-      :status="{ useFor: 'order' }"
-    />
+    <Dialog>
+      <DialogTrigger as-child>
+        <HotelCard
+          v-for="(item, index) in orders"
+          :key="index"
+          :hotel="item.hotel"
+          :status="{ useFor: 'order' }"
+        />
+      </DialogTrigger>
+
+      <DialogContent class="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div class="grid gap-4 py-4">
+          <div class="grid grid-cols-4 items-center gap-4">
+            <Label for="name" class="text-right"> Name </Label>
+            <Input id="name" default-value="Pedro Duarte" class="col-span-3" />
+          </div>
+          <div class="grid grid-cols-4 items-center gap-4">
+            <Label for="username" class="text-right"> Username </Label>
+            <Input id="username" default-value="@peduarte" class="col-span-3" />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit"> Save changes </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   </main>
 </template>
 
 <script lang="ts" setup>
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
 import HotelCard from '@/components/HotelCard/HotelCard.vue'
 
 import { db } from '@/lib/firebase'
@@ -53,13 +89,12 @@ const init = async () => {
     const userSnap = await getDoc(userRef)
 
     if (userSnap.exists()) {
-      orders = userSnap.data().booked_hotels
-      console.log((await getDoc(orders[0].hotel)).data())
+      orders = await userSnap.data().booked_hotels
+      console.log(orders)
 
       orders.forEach(async (item) => {
         const hotelSnap = await getDoc(item.hotel)
-        // item.hotel = hotelSnap.data()
-        // console.log(hotel)
+        item.hotel = hotelSnap.data()
       })
 
       // orders.hotel = bookedHotels

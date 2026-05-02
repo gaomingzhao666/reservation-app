@@ -1,4 +1,6 @@
 <template>
+  <BookingStepper :steps="steps" :currentStepValue="2" />
+
   <Card class="mx-auto w-full">
     <CardHeader>
       <CardTitle>User Information</CardTitle>
@@ -63,6 +65,7 @@
 </template>
 
 <script lang="ts" setup>
+import BookingStepper from '@/components/BookingStepper.vue'
 import { Button } from '@/components/ui/button'
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import {
@@ -84,6 +87,30 @@ import { getAuth } from 'firebase/auth'
 import { app } from '@/lib/firebase'
 
 import { useOrderInfoStore } from '@/stores/orderInfo'
+
+import { Info, CheckCircle2, Truck } from 'lucide-vue-next'
+
+const steps = [
+  {
+    value: 1,
+    title: 'Select Service and Date',
+    description: 'Select the service you want to book',
+    icon: Truck,
+  },
+  {
+    value: 2,
+    title: 'Input Necessary Information',
+    description: 'A few details about you so we can take identification',
+    icon: Info,
+    state: 'active',
+  },
+  {
+    value: 3,
+    title: 'Confirm Overall Information',
+    description: 'Review your order and confirm',
+    icon: CheckCircle2,
+  },
+]
 
 const auth = getAuth(app)
 const orderInfoStore = useOrderInfoStore()

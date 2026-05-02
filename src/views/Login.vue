@@ -102,6 +102,7 @@ const loginWithGoogle = () => {
 
       // add user to db
       const user = result.user
+      // if (user.uid !== db.)
       await addDoc(collection(db, 'user'), {
         uid: user.uid,
         email: user.email,
